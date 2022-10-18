@@ -1,0 +1,22 @@
+[Unit]
+Description=OoklaServer-SpeedTest 
+After=network.target
+ 
+[Service]
+User=root
+Group=root
+Type=simple
+RemainAfterExit=yes
+ 
+WorkingDirectory=/etc/ooklaserver
+ExecStart=/etc/ooklaserver/ooklaserver.sh start
+ExecReload=/etc/ooklaserver/ooklaserver.sh restart
+#ExecStop=/etc/ooklaserver/ooklaserver.sh stop
+ExecStop=/usr/bin/killall -9 OoklaServer
+ 
+TimeoutStartSec=60
+TimeoutStopSec=300
+ 
+[Install]
+WantedBy=multi-user.target
+Alias=speedtest.service
